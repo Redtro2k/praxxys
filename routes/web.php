@@ -36,6 +36,7 @@ Route::get('/dashboard', function () {
 Route::controller(ProductController::class)->prefix('product')->group(function(){
     Route::get('/create', 'create')->name('product.create');
     Route::get('/', 'index')->name('product');
+    Route::get('/{id}/edit', 'edit')->name('product');
     Route::post('/', 'store');
 });
 

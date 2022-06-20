@@ -23,13 +23,13 @@
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
-                <tr v-for="list in lists" :key="list.id">
+                <tr v-for="list in lists.data" :key="list.pid">
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ list.pname }}</td>
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{ truncateString(list.pdescription, 40) }}</td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ list.pcategory }}</td>
                   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900"
-                      >Edit<span class="sr-only">, {{ list.pid }}</span></a
+                    <Link :href="`product/${list.pid}/edit`" class="text-indigo-600 hover:text-indigo-900"
+                      >Edit<span class="sr-only">, {{ list.pid }}</span></Link
                     >
                   </td>
                 </tr>
@@ -42,6 +42,8 @@
   </div>
 </template>
 <script setup>
+import { Link } from '@inertiajs/inertia-vue3';
+
 defineProps({
      title: String,
      description: String,

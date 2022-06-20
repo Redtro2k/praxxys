@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use App\Models\Category;
 use App\Models\Product;
@@ -13,12 +14,16 @@ class ProductController extends Controller
 
     public function index(){
         return Inertia::render('Products/Index', [
-            'products' => Product::all()->map(fn($product) => [
+            'products' => Product::query()->when(
+                Request::input('search'), function($query, $search){
+                    $query->where('name','like', "%{$search}%");
+                })->orderBy('category', 'asc')->paginate(10)->withQueryString()->through(fn($product) => [
                 'pid' => $product->id,
                 'pname' => $product->name,
                 'pcategory' => $product->categories->name,
                 'pdescription' => strip_tags($product->description)
-            ])
+            ]),
+            'filter' => Request::only(['search'])
         ]);
     }
     /**
@@ -78,7 +83,25 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $products = Product::where('id', $id)->get();
+        if($products){
+            return Inertia::render('Products/Update', [
+                'products' => $products->map(fn($product) => [
+                    'pid' => $product->id,
+                    'pname' => $product->name,
+                    'pcategory' => $product->categories->id,
+                    'pdescription' => $product->description
+                ]),
+                'categories' => Category::all()->map(fn($category) => [
+                    'cid' => $category->id,
+                    'cname' => $category->name
+                ])
+            ]);
+        }else{
+            return abort(404);
+        }
+  
     }
 
     /**
