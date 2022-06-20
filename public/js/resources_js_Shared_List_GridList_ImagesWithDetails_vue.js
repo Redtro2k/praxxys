@@ -11,8 +11,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var convert_size__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! convert-size */ "./node_modules/convert-size/convertSize.js");
-/* harmony import */ var convert_size__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(convert_size__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var convert_size__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! convert-size */ "./node_modules/convert-size/convertSize.js");
+/* harmony import */ var convert_size__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(convert_size__WEBPACK_IMPORTED_MODULE_1__);
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   __name: 'ImagesWithDetails',
@@ -23,7 +25,8 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var __returned__ = {
-      convertSize: (convert_size__WEBPACK_IMPORTED_MODULE_0___default())
+      Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link,
+      convertSize: (convert_size__WEBPACK_IMPORTED_MODULE_1___default())
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -64,16 +67,12 @@ var _hoisted_3 = {
 };
 var _hoisted_4 = ["src"];
 var _hoisted_5 = {
-  type: "button",
-  "class": "absolute inset-0 focus:outline-none"
-};
-var _hoisted_6 = {
   "class": "sr-only"
 };
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none"
 };
-var _hoisted_8 = {
+var _hoisted_7 = {
   "class": "block text-sm font-medium text-gray-500 pointer-events-none"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -87,11 +86,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "object-cover pointer-events-none group-hover:opacity-75"
     }, null, 8
     /* PROPS */
-    , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, "View details for " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(file.title), 1
+    , _hoisted_4), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+      href: "/images/".concat(file.image_id, "/delete"),
+      "class": "absolute inset-0 focus:outline-none"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_5, "View details for " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(file.title), 1
+        /* TEXT */
+        )];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(file.title) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(file.image_id), 1
     /* TEXT */
-    )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(file.title), 1
-    /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.convertSize(parseInt(file.size))), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.convertSize(parseInt(file.size))), 1
     /* TEXT */
     )]);
   }), 128

@@ -43,6 +43,10 @@
                                             </div>
                                         <p class="mt-2 text-sm text-gray-500">Write a few sentences about description.</p>
                                     </div>
+                                    <div class="sm:col-span-6">
+                                        <Datepicker  v-model="form.created" placeholder="Start Typing ..." :is24="false" textInput/>
+                                        <div v-if="form.errors.created" v-text="form.errors.description"></div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -51,6 +55,8 @@
                                 </progress>
                             <div class="pt-5">
                                 <div class="flex justify-end">
+                                   <Link :href="`/product/${props.products[0].pid}/delete`" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Delete</Link>
+
                                     <button :disabled="form.processing" type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Next Step</button>
                                 </div>
                             </div>
@@ -64,7 +70,7 @@
 </template>
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-import { Head, useForm } from '@inertiajs/inertia-vue3';
+import { Head, useForm, Link } from '@inertiajs/inertia-vue3';
 
 const props = defineProps({
     categories: Object,
@@ -73,11 +79,12 @@ const props = defineProps({
 let form = useForm({
     name: props.products[0].pname,
     category: props.products[0].pcategory,
-    description: props.products[0].pdescription
+    description: props.products[0].pdescription,
+    created: props.products[0].created
 })
 
 let submit = () => {
-    form.post('/product', {
+    form.post(`/product/update/${props.products[0].pid}`, {
         preserveScroll: true,
     })
 }

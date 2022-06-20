@@ -36,12 +36,16 @@ Route::get('/dashboard', function () {
 Route::controller(ProductController::class)->prefix('product')->group(function(){
     Route::get('/create', 'create')->name('product.create');
     Route::get('/', 'index')->name('product');
-    Route::get('/{id}/edit', 'edit')->name('product');
+    Route::get('/{id}/edit', 'edit');
+    Route::get('/{id}/delete', 'destroy')->name('product.delete');
+
     Route::post('/', 'store');
+    Route::post('/update/{id}', 'update');
 });
 
 Route::controller(ImageController::class)->prefix('images')->group(function(){
     Route::get('/show/{id}', 'show');
+    Route::get('/{id}/delete', 'destroy');
     Route::post('/{id}', 'store');
 });
 

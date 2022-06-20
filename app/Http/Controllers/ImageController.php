@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Images;
 
 class ImageController extends Controller
 {
@@ -111,5 +113,15 @@ class ImageController extends Controller
     public function destroy($id)
     {
         //
+        $image = Images::find($id);
+        if(Storage::disk('public')->exists($image->img)){
+            Storage::disk('public')->delete($image->img);
+            $image->delete();
+            return redirect()->back();
+        }
+        else{
+            return abort(403);
+        }
+        
     }
 }
